@@ -1,0 +1,307 @@
+:root {
+  --color-bg: #0A0A0A;
+  --color-text: #EAEAEA;
+  --color-accent: #EAEAEA;
+  --color-hover: #5E503F;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Arial', sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* NAVBAR */
+.header { 
+  position: sticky; 
+  top: 0; 
+  background: rgba(0,0,0,0.8); 
+  backdrop-filter: blur(10px); 
+  z-index: 1000; }
+
+.logo img { 
+  border-radius: 50%; }
+
+.navbar { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  padding: 1rem; }
+
+.nav-links { 
+  list-style: none; 
+  display: flex; 
+  gap: 1rem; }
+
+.nav-links a { 
+  color: var(--color-text); 
+  text-decoration: none; 
+  transition: color .3s; }
+
+.nav-links a:hover { 
+  color: var(--color-hover); }
+
+
+/* --- HERO --- */
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 90vh; /* como lo tenías */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: var(--color-text);
+  overflow: hidden;
+}
+
+/* Video desktop */
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+  display: block;
+}
+
+/* Imagen fallback */
+.hero-fallback {
+  position: absolute;
+  inset: 0;
+  background: url("/img/claudiocortessepeluqueria.jpeg") no-repeat center center/cover;
+  z-index: -3;
+}
+
+/* Overlay oscuro */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 9, 8, 0.6);
+  z-index: -1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  padding: 1rem;
+}
+
+.hero-content h1 {
+  font-size: 2rem;
+  color: var(--color-accent);
+}
+
+.hero-content p {
+  margin: 1rem 0;
+}
+
+/* Botón */
+.btn {
+  background: var(--color-accent);
+  color: black;
+  padding: 0.7rem 1.2rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: transform .3s, background .3s;
+  text-decoration: none;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+  background: var(--color-hover);
+  color: white;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+  .hero-video { display: none; }  /* ocultamos video */
+  .hero-fallback { z-index: -2; } /* mostramos solo imagen */
+  .hero-content h1 { font-size: 1.8rem; }
+  .hero-content p { font-size: 1rem; }
+  .btn { font-size: 0.9rem; padding: 0.6rem 1rem; }
+}
+
+@media (min-width: 768px) {
+  .hero-content h1 { font-size: 3rem; }
+}
+
+
+/* SECCIONES */
+.section { 
+  padding: 2rem 1rem; 
+  text-align: center; }
+
+h2 { 
+  margin-bottom: 1rem; 
+  color: var(--color-accent); }
+
+
+/* FORMULARIO */
+.form-turno { 
+  display: flex; 
+  flex-direction: column; 
+  gap: .8rem; 
+  max-width: 400px; 
+  margin: auto; }
+
+input, button { 
+  padding: 0.7rem; 
+  border-radius: 5px; }
+  
+input { 
+  border: none; 
+  background: #222; 
+  color: var(--color-text); 
+  transition: all .3s; }
+
+input:focus {
+  outline: none;
+  background: #333;
+  border: 1px solid var(--color-accent);
+}
+
+.btn:focus { 
+  outline: 2px solid var(--color-accent); 
+  outline-offset: 3px; }
+
+/* GALERÍA */
+.galeria-grid { 
+  display: grid; 
+  grid-template-columns: 1fr; 
+  gap: 1rem; margin-top: 1rem; }
+
+.galeria-item img { 
+  width: 100%; 
+  border-radius: 10px; 
+  transition: transform .3s; 
+  cursor: pointer; }
+
+.galeria-item img:hover { 
+  transform: scale(1.05); }
+  
+
+/* VIDEO CARDS (miniaturas) */
+.video-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: stretch;
+  text-align: left;
+}
+
+.video-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  display: block;
+  object-fit: cover;
+}
+
+.video-title {
+  font-size: 1rem;
+  color: var(--color-text);
+  margin-top: 0.25rem;
+  line-height: 1.2;
+}
+
+/* Modal específico para video (hereda .modal / .modal-backdrop ya existentes) */
+.video-modal-content .video-wrap {
+  width: min(92vw, 1100px);
+  height: min(56.25vw, 620px); /* mantiene 16:9 pero limita altura */
+  max-height: 86vh;
+}
+
+.video-modal-content iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 8px;
+}
+
+/* Ajustes responsive: miniaturas más altas en mobile */
+@media (max-width: 480px) {
+  .video-modal-content .video-wrap {
+    height: 56.25vw; /* 16:9 */
+  }
+}
+
+
+/* MODAL */
+.modal { 
+  position: fixed; 
+  inset: 0; 
+  z-index: 9999; 
+  display: grid; 
+  place-items: center; }
+
+.modal-backdrop { 
+  position: absolute; 
+  inset: 0; 
+  background: rgba(0,0,0,.6); 
+  backdrop-filter: blur(2px); }
+
+.modal-content { 
+  position: relative; 
+  max-width: min(92vw, 800px); 
+  max-height: 86vh; 
+  padding: .5rem; 
+  background: #111; 
+  border-radius: 12px; 
+  box-shadow: 0 10px 40px rgba(0,0,0,.5); }
+
+.modal-content img { 
+  display: block; 
+  width: 100%; 
+  height: auto; 
+  border-radius: 8px; }
+
+.close { 
+  position: absolute; 
+  top: 8px; right: 10px; 
+  border: none; 
+  background: transparent; 
+  font-size: 2rem; 
+  color: #eaeaea; 
+  cursor: pointer; }
+
+
+/* CONTACTO */
+.contacto a { 
+  color: var(--color-accent); 
+  text-decoration: underline; }
+
+.mapa iframe { 
+  width: 100%; 
+  height: 250px; 
+  border: none; 
+  margin-top: 1rem; }
+
+
+/* FOOTER */
+.footer { 
+  padding: 1rem; 
+  background: #111; 
+  text-align: center; 
+  font-size: .9rem; 
+  border-top: 1px solid #333}
+
+
+/* RESPONSIVE */
+@media (min-width: 768px) {
+  .hero-content h1 { 
+    font-size: 3rem; }
+
+  .galeria-grid { 
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+}

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO -->
+    <title>Claudio Cortesse Peluquería</title>
+    <meta name="description" content="Claudio Cortesse Peluquería en San Francisco, Córdoba. Más de 9 años de experiencia en cortes, estilos y tendencias. Reservá tu turno online.">
+    <meta name="keywords" content="peluquería, cortes, barbería, Claudio Cortesse, San Francisco Córdoba">
+    <meta name="author" content="Claudio Cortesse">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/img/claudiocortessepeluqueria.png" type="image/png">
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Scripts -->
+    <script defer src="/js/script.js"></script>
+  </head>
+  <body>
+    <!-- NAVBAR FIJA -->
+    <header class="header">
+      <nav class="navbar">
+        <div class="logo">
+          <img src="/img/claudiocortessepeluqueria.png" alt="Logo de Claudio Cortesse Peluquería">
+        </div>
+        <ul class="nav-links">
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#turnos">Turnos</a></li>
+          <li><a href="#galeria">Galería</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+      <!-- Video (solo desktop) -->
+      <video id="inicio" class="hero-video" autoplay muted loop playsinline preload="metadata" poster="/img/claudiocortessepeluqueria.jpeg">
+        <source src="img/backgroundAppPeluqueria.webm" type="video/webm">
+      </video>
+
+      <!-- Imagen fallback -->
+      <div class="hero-fallback"></div>
+
+      <!-- Contenido hero -->
+    <div class="hero-content">
+      <h1>Claudio Cortesse Peluquería</h1>
+      <p>Más de 9 años de experiencia brindando un servicio personalizado con un estilo único.</p>
+      <button class="btn" onclick="document.getElementById('turnos').scrollIntoView({ behavior: 'smooth' });">
+        Reservar Turno
+      </button>
+    </div>
+  </section>
+
+    <!-- FORMULARIO DE TURNOS --> 
+    <main>
+      <section id="turnos" class="turnos section">
+        <h2>Reservá tu turno</h2>
+        <form id="form-turno" class="form-turno">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" required placeholder="Tu nombre">
+          
+          <label for="fecha">Día</label>
+          <input type="date" id="fecha" required>
+          
+          <label for="hora">Hora</label>
+          <input type="time" id="hora" required>
+          
+          <button type="submit" class="btn">Enviar por WhatsApp</button>
+        </form>
+        <p id="confirmacion" class="mensaje-confirmacion"></p>
+      </section>
+
+      <!-- GALERÍA (últimos videos de YouTube) -->
+      <section id="galeria" class="galeria section">
+        <h2>Últimos videos</h2>
+        <div class="galeria-grid" id="galeria-grid">
+          <!-- JS insertará aquí las tarjetas con miniaturas -->
+        </div>
+      </section>
+
+      <!-- CONTACTO -->
+      <section id="contacto" class="contacto section">
+        <h2>Contacto</h2>
+        <p>📍 Dirección: Calle Salta 1187, San Francisco, Córdoba</p>
+        <p>📷 Instagram: <a href="https://www.instagram.com/claudiocortessepeluqueria/" target="_blank" rel="noopener noreferrer">@claudiocortessepeluqueria</a></p>
+        <p>📞 WhatsApp: <a href="https://wa.me/543564359460" target="_blank" rel="noopener noreferrer">Enviar mensaje</a></p>
+        <p>YouTube: <a href="https://www.youtube.com/@claudiocortessepeluqueria/shorts" target="_blank" rel="noopener noreferrer">Mi Canal</a></p>
+        <div class="mapa">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2094.4115195687373!2d-62.08113796487574!3d-31.43478830302524!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95cb281ca357d92d%3A0x7e9d590e828c10d5!2sSalta%201187%2C%20X2400%20San%20Francisco%2C%20C%C3%B3rdoba!5e1!3m2!1ses-419!2sar!4v1755780673412!5m2!1ses-419!2sar" 
+            width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <p>&copy; 2025 Claudio Cortesse Peluquería. Todos los derechos reservados.</p>
+    </footer>
+  </body>
+</html>
