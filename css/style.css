@@ -77,7 +77,7 @@ html {
 .hero-fallback {
   position: absolute;
   inset: 0;
-  background: url("/img/claudiocortessepeluqueria.jpeg") no-repeat center center/cover;
+  background: url("/img/claudio-cortesse-peluqueria.jpeg") no-repeat center center/cover;
   z-index: -3;
 }
 

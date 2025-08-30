@@ -44,18 +44,18 @@ async function cargarVideosYouTube() {
       }
 
       data.items.forEach(item => {
-        const videoId = item.id?.videoId;
-        const title = item.snippet?.title;
-        const thumb = item.snippet?.thumbnails?.high?.url;
+  const videoId = item.videoId;
+  const title = item.title;
+  const thumb = item.thumb;
 
-        const card = document.createElement("div");
-        card.className = "galeria-item video-card";
-        card.innerHTML = `
-          <img src="${thumb}" alt="${escapeHtml(title)}" loading="lazy" data-videoid="${videoId}">
-          <div class="video-title">${escapeHtml(title)}</div>
-        `;
-        container.appendChild(card);
-      });
+  const card = document.createElement("div");
+  card.className = "galeria-item video-card";
+  card.innerHTML = `
+    <img src="${thumb}" alt="${escapeHtml(title)}" loading="lazy" data-videoid="${videoId}">
+    <div class="video-title">${escapeHtml(title)}</div>
+  `;
+  container.appendChild(card);
+});
 
       // Modal para videos
       container.querySelectorAll("img[data-videoid]").forEach(img => {
