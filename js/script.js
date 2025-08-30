@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // ---- cargar videos desde backend (Vercel) ----
-const API_ENDPOINT = "/api/videos?maxResults=3"; // ruta relativa (hidrateada por Vercel)
+const API_ENDPOINT = "https://claudiocortessepeluqueria.vercel.app/api/videos?maxResults=3"; // ruta relativa (hidrateada por Vercel)
 const container = document.getElementById("galeria-grid");
 
 async function cargarVideosYouTube() {
