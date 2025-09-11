@@ -1,3 +1,4 @@
+/*---VARIABLES---*/
 :root {
   --color-bg: #0A0A0A;
   --color-text: #EAEAEA;
@@ -5,194 +6,231 @@
   --color-hover: #5E503F;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-body {
-  font-family: 'Arial', sans-serif;
-  background: var(--color-bg);
-  color: var(--color-text);
-  line-height: 1.6;
+/*---PROPIEDADES GENERALES---*/
+* { 
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: smooth; /*permite desplazarse de forma fluida por la pagina*/
 }
 
-/* NAVBAR */
-.header { 
-  position: sticky; 
-  top: 0; 
-  background: rgba(0,0,0,0.8); 
-  backdrop-filter: blur(10px); 
-  z-index: 1000; }
+body {
+  font-family: 'Arial', sans-serif; /*fuente del texto de la pagina*/
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6; /*controla el espacio entre lineas de texto (ej: 1.6 veces el tamaño)*/
+}
 
-.logo img { 
-  border-radius: 50%; }
+/*---NAVBAR---*/
+.header { 
+  position: sticky; /*deja fijo el nav*/
+  top: 0; /*mantiene al nav fijo en la posicion 0 de top*/
+  background: rgba(0, 0, 0, 0.6); /*nav transparente*/
+  backdrop-filter: blur(10px); /*desenfoque de los elementos detras del nav fijo*/
+  z-index: 1000; /*permite al nav mantenerse sobre los demas elementos*/
+}
 
 .navbar { 
-  display: flex; 
-  justify-content: space-between; 
-  align-items: center; 
-  padding: 1rem; }
-
+  display: flex; /*hace flexible los elementos del nav*/
+  justify-content: space-between; /*alinea los elementos de forma horizontal*/
+  align-items: center; /*los alinea de forma vertical*/
+  padding: 1rem; 
+}
+  
 .nav-links { 
-  list-style: none; 
-  display: flex; 
-  gap: 1rem; }
+  list-style: none; /*elimina los estilos que la lista trae por defecto*/
+  display: flex; /*le da flexibilidad a la lista para acomodar sus elementos*/
+  gap: 1rem; 
+}
+  
+.logo img { 
+    border-radius: 50%; /*redondeamos el logo del nav*/
+}
 
 .nav-links a { 
   color: var(--color-text); 
-  text-decoration: none; 
-  transition: color .3s; }
+  text-decoration: none; /*elimina estilos o decoraciones por defecto de los a*/
+  transition: color .3s; /*le da una pequeña transicion al color aplicado en el hover de los a*/
+}
 
 .nav-links a:hover { 
-  color: var(--color-hover); }
-
-
-/* --- HERO --- */
-.hero {
-  position: relative;
-  width: 100%;
-  min-height: 90vh; /* como lo tenías */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  color: var(--color-text);
-  overflow: hidden;
+  color: var(--color-hover); 
 }
 
-/* Video desktop */
+
+/*---HERO---*/
+.hero {
+  position: relative; /*mantiene su espacio original, no pierde su hueco pero se puede reubicar con propiedades (top, bottom, left, right)*/
+  width: 100%;
+  min-height: 90vh; /*altura minima del hero*/
+  display: flex; /*le da flexibilidad a los elementos del hero*/
+  justify-content: center; /*ajusta los elementos de forma horizontal*/
+  align-items: center; /*ajusta los elementos de forma vertical*/
+  text-align: center; /*controla el eje horizontal del texto*/
+  color: var(--color-text);
+  overflow: hidden; /*hace que todo lo que sobresalga del ancho y alto del contenedor se oculte o corte*/
+}
+
+/*Overlay oscuro*/
+.hero::before {
+  content: ""; /*inserta un pseudo elemento, puede ser texto o nada si queres crear efectos en backgrounds (como oscurecer fondos)*/
+  position: absolute; /*toma de guia al contenedor con posicion relative mas cercano*/
+  inset: 0; /*atajo para top 0 bottom 0 left 0 right 0*/
+  background: rgba(10, 9, 8, 0.6);
+  z-index: -1; /* -1 para que se posicione entre el background (video o imagen) y el hero*/
+}
+
 .hero-video {
-  position: absolute;
-  inset: 0;
+  position: absolute; /*toma de guia el contenedor con posicion relative y no el body*/
+  inset: 0; /*es un atajo para decir top 0 bottom 0 left 0 right 0 y sirve si queres que ocupe todo el espacio de su contenedor padre posicionado*/
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  z-index: -2;
-  display: block;
+  object-fit:cover; /*se utiliza para que la imagen o video ocupe todo el espacio sin deformarse aunque tenga que recortarse*/
+  z-index: -2; /*permite que el video se posicione siempre detras del hero*/
+  display: block; /*hace que el elemento se comporte como un bloque*/
 }
 
-/* Imagen fallback */
+/*imagen responsive*/
 .hero-fallback {
-  position: absolute;
-  inset: 0;
-  background: url("/img/claudio-cortesse-peluqueria-background.jpeg") no-repeat center center/cover;
+  position: absolute; /*toma de guia el contenedor con posicion relative*/
+  inset: 0; /*atajo para top 0 bottom 0 left 0 right 0*/
+  background: url("/img/claudio-cortesse-peluqueria-background.jpeg") no-repeat center center/cover; /*imagen que se mostrara en dispositivos mobiles*/
   z-index: -3;
 }
 
-/* Overlay oscuro */
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(10, 9, 8, 0.6);
-  z-index: -1;
-}
-
 .hero-content {
-  position: relative;
-  z-index: 1;
+  position: relative; /*mantiene su espacio original, no pierde su hueco pero se puede reubicar con propiedades (top, bottom, left, right)*/
+  z-index: 1; /*para que se posicione siempre delante del overlay y video o imagen*/
   padding: 1rem;
 }
 
-.hero-content h1 {
-  font-size: 2rem;
+.hero-content h1 { 
+  font-size: 3rem; 
   color: var(--color-accent);
 }
 
 .hero-content p {
   margin: 1rem 0;
+  font-size: 1.2rem;
 }
 
-/* Botón */
+/*Botón*/
 .btn {
   background: var(--color-accent);
   color: black;
   padding: 0.7rem 1.2rem;
   border: none;
-  cursor: pointer;
-  border-radius: 6px;
-  transition: transform .3s, background .3s;
-  text-decoration: none;
+  cursor: pointer; /*sirve para mostrar una mano clickeable al pasar sobre el boton*/
+  border-radius: 6px; /*redondea esquinas*/
+  transition: transform .3s, background .3s; /*crea una transicion en el boton al posicionar el mouse encima*/
 }
 
 .btn:hover {
-  transform: scale(1.05);
+  /*transform: scale(1.05); agranda el boton al pasar el mouse*/
   background: var(--color-hover);
   color: white;
 }
 
-/* --- RESPONSIVE --- */
+/*---RESPONSIVE---*/
 @media (max-width: 768px) {
-  .hero-video { display: none; }  /* ocultamos video */
-  .hero-fallback { z-index: -2; } /* mostramos solo imagen */
-  .hero-content h1 { font-size: 1.8rem; }
-  .hero-content p { font-size: 1rem; }
-  .btn { font-size: 0.9rem; padding: 0.6rem 1rem; }
+  .hero-video { 
+    display: none; /*oculta video en mobiles*/
+  }  
+  .hero-fallback { 
+    z-index: -2; /*muestra solo imagen en mobiles*/
+  } 
+  .hero-content h1 { 
+    font-size: 2rem; 
+  }
+  .hero-content p { 
+    font-size: 1rem; 
+  }
 }
-
-@media (min-width: 768px) {
-  .hero-content h1 { font-size: 3rem; }
-}
-
 
 /* SECCIONES */
 .section { 
   padding: 2rem 1rem; 
-  text-align: center; }
+  text-align: center; /*alinea el texto horizontalmente*/
+}
 
 h2 { 
   margin-bottom: 1rem; 
-  color: var(--color-accent); }
+  color: var(--color-accent); 
+}
 
 
 /* FORMULARIO */
 .form-turno { 
-  display: flex; 
-  flex-direction: column; 
-  justify-content: center;
-  align-items: center;
-  gap: 1rem; 
-  max-width: 400px; }
+  display: flex; /*le da flexibilidad a los elementos del formulario*/
+  flex-direction: column; /*los posiciona uno debajo del otro*/
+  justify-content: center; /*ajusta los elementos de forma horizontal*/
+  align-items: center; /*ajusta los elementos de forma vertical*/
+  gap: 1rem; /*distancia entre elementos*/
+  max-width: 100%;
+  margin: auto; /*auto para que el formulario se ajuste automaticamente en el centro*/
+}
 
-input, button { 
-  padding: 0.7rem; 
-  border-radius: 5px; 
-  width: 90%;
-  max-width: 400px;}
-  
+.form-turno label {
+  width: 100%;
+  max-width: 900px;
+  display: flex; /*flex para posicionar*/
+  flex-direction: column; /*column para posicionar label por encima de input*/
+  align-items: center; /*para alinear en el centro los input*/
+}
+
 input { 
-  border: none; 
+  max-width: 600px;
+  width: 100%;
+  padding: 0.7rem;
+  border-radius: 5px;
+  border: none; /*quita el borde por defecto del input*/
   background: #222; 
   color: var(--color-text); 
-  transition: all .3s; }
+  transition: all .3s; /*le da transicion a los efectos del focus*/
+}
 
 input:focus {
-  outline: none;
+  outline: none; /*quita el borde alrededor del input*/
   background: #333;
   border: 1px solid var(--color-accent);
 }
 
-.btn:focus { 
-  outline: 2px solid var(--color-accent); 
-  outline-offset: 3px; }
+button { 
+  padding: 0.7rem; 
+  border-radius: 5px; 
+  max-width: 600px;
+  width: 100%;
+}
 
-/* GALERÍA */
+
+
+/*.btn:focus { 
+  outline: 2px solid var(--color-accent); borde alrededor del elemento que no ocupa espacio y funciona igual que border
+  outline-offset: 3px;  distancia entre el borde y el elemento
+  }*/
+
+/*---GALERÍA---*/
 .galeria-grid { 
-  display: grid; 
-  grid-template-columns: 1fr; 
-  gap: 1rem; margin-top: 1rem; }
+  display: grid; /*para definir casillas, permite filas y columnas al mismo tiempo*/
+  grid-template-columns: 1fr; /*columns define cuantas columnas hay y rows cuantas filas hay*/
+  gap: 1rem; /*espacio entre celdas*/
+  margin-top: 1rem; 
+}
 
 .galeria-item img { 
   width: 100%; 
   border-radius: 10px; 
-  transition: transform .3s; 
-  cursor: pointer; }
+  transition: transform .3s; /*le da transicion al hover*/
+  cursor: pointer; /*cambia el cursor cuando se posiciona encima del video*/
+}
 
 .galeria-item img:hover { 
-  transform: scale(1.05); }
-  
+  transform: scale(1.05); /*escala el tamaño al posicionar el cursor*/
+}
+
 
 /* VIDEO CARDS (miniaturas) */
 .video-card {
@@ -212,7 +250,7 @@ input:focus {
 }
 
 .video-title {
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: var(--color-text);
   margin-top: 0.25rem;
   line-height: 1.2;
@@ -246,13 +284,15 @@ input:focus {
   inset: 0; 
   z-index: 9999; 
   display: grid; 
-  place-items: center; }
+  place-items: center; 
+}
 
 .modal-backdrop { 
   position: absolute; 
   inset: 0; 
   background: rgba(0,0,0,.6); 
-  backdrop-filter: blur(2px); }
+  backdrop-filter: blur(2px); 
+}
 
 .modal-content { 
   position: relative; 
@@ -261,35 +301,38 @@ input:focus {
   padding: .5rem; 
   background: #111; 
   border-radius: 12px; 
-  box-shadow: 0 10px 40px rgba(0,0,0,.5); }
+  box-shadow: 0 10px 40px rgba(0,0,0,.5); 
+}
 
 .modal-content img { 
   display: block; 
   width: 100%; 
   height: auto; 
-  border-radius: 8px; }
+  border-radius: 8px; 
+}
 
 .close { 
   position: absolute; 
-  top: 8px; right: 10px; 
+  top: -70px; right: 10px; 
   border: none; 
   background: transparent; 
   font-size: 2rem; 
   color: #eaeaea; 
-  cursor: pointer; }
-
+  cursor: pointer; 
+}
 
 /* CONTACTO */
 .contacto a { 
   color: var(--color-accent); 
-  text-decoration: underline; }
+  text-decoration: underline; 
+}
 
 .mapa iframe { 
   width: 100%; 
   height: 250px; 
   border: none; 
-  margin-top: 1rem; }
-
+  margin-top: 1rem; 
+}
 
 /* FOOTER */
 .footer { 
@@ -297,14 +340,16 @@ input:focus {
   background: #111; 
   text-align: center; 
   font-size: .9rem; 
-  border-top: 1px solid #333}
-
+  border-top: 1px solid #333
+}
 
 /* RESPONSIVE */
 @media (min-width: 768px) {
   .hero-content h1 { 
-    font-size: 3rem; }
+    font-size: 3rem; 
+  }
 
   .galeria-grid { 
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+  }
 }
